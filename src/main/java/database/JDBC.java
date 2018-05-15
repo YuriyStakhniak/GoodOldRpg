@@ -1,7 +1,10 @@
 package database;
 
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class JDBC {
 
@@ -9,36 +12,19 @@ public class JDBC {
     public static final String USERNAME = "postgres";
     public static final String PASSWORD = "postgres";
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         try {
             Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        Connection connection = null;
-        try {
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        Statement statement =
-                null;
-        try {
-            statement = connection.createStatement();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try {
+            Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            Statement statement =
+                    connection.createStatement();
             statement.execute("CREATE TABLE hero(id INT PRIMARY KEY NOT NULL," +
                     "name TEXT NOT NULL, raceName TEXT NOT NULL, professionName " +
                     "TEXT NOT NULL, health DOUBLE PRECISION NOT NULL, " +
                     "manaPoint DOUBLE PRECISION NOT NULL, " +
                     "ragePoint DOUBLE PRECISION NOT NULL);");
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }
-        try {
-            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
