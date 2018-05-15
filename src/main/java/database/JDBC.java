@@ -23,6 +23,7 @@ public class JDBC {
                     "TEXT NOT NULL, health DOUBLE PRECISION NOT NULL, " +
                     "manaPoint DOUBLE PRECISION NOT NULL, " +
                     "ragePoint DOUBLE PRECISION NOT NULL);");
+            connection.close();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
