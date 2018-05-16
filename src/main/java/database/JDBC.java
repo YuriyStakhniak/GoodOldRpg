@@ -13,9 +13,7 @@ public class JDBC {
     public static final String PASSWORD = "postgres";
 
     public static void main(String[] args) {
-        try {
-            Class.forName("org.postgresql.Driver");
-            Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             Statement statement =
                     connection.createStatement();
             statement.execute("CREATE TABLE hero(id INT PRIMARY KEY NOT NULL," +
@@ -23,9 +21,6 @@ public class JDBC {
                     "TEXT NOT NULL, health DOUBLE PRECISION NOT NULL, " +
                     "manaPoint DOUBLE PRECISION NOT NULL, " +
                     "ragePoint DOUBLE PRECISION NOT NULL);");
-            connection.close();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }
