@@ -14,8 +14,7 @@ public class JDBC {
 
     public static void main(String[] args) {
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-            Statement statement =
-                    connection.createStatement();
+            Statement statement = connection.createStatement();
             statement.execute("CREATE TABLE hero(id INT PRIMARY KEY NOT NULL," +
                     "name TEXT NOT NULL, raceName TEXT NOT NULL, professionName " +
                     "TEXT NOT NULL, health DOUBLE PRECISION NOT NULL, " +
